@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KryptoStore</title>
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/template.js" defer></script>
     <script src="scripts/api.js" defer></script>
 </head>
 <body onload="logData()">
+    <header>
+        <div class="header-container">
+            <img class="header-image" src="assets/img/header.jpg"> 
+            <span>KryptoStore</span>
+        </div>
+        <div class="header-container">
+            <a onclick="logData('eur')">EUR</a>
+            <a onclick="logData('usd')">USD</a>
+            <a onclick="logData('chf')">CHF</a>
+        </div>
+    </header>
     <div id="coin-container"></div>
 </body>
-</html>
+</html> 
