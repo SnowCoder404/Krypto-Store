@@ -3,9 +3,17 @@ const coins = [ "bitcoin", "ethereum", "litecoin", "dogecoin", "stellar", "rippl
 let coinTemplateData = [];
 
 async function logData(currency = "usd") {
+    const activeCurrency = document.querySelector(".active").id;
+    if (coinTemplateData.length <= 0 || activeCurrency != currency) {
+        coinTemplateData = await loadData(coins, currency);
+        setCurrencyActive(currency);
+    }
+    searchInLocalData(currency);
+}
+
+function searchInLocalData(currency = "usd") {
     const container = document.getElementById('coin-container');
     container.innerHTML = "";
-    coinTemplateData = await loadData(coins, currency);
     coinTemplateData.forEach(coin => {
         if (currency === "usd") {
             currency = "$";
@@ -16,6 +24,23 @@ async function logData(currency = "usd") {
         }
         container.innerHTML += coinTemplate(coin, currency);
     });
+}
+
+function setCurrencyActive(currency) {
+    document.querySelectorAll(".active").forEach(element => {
+        element.classList.remove("active");
+    });
+    document.getElementById(currency).classList.add("active");
+}
+
+function currencyChange(currency) {
+    if (currency === "$") {
+        return "usd";
+    } else if (currency === "€") {
+        return "eur";
+    } else if (currency === "CHF") {
+        return "chf";
+    }    
 }
 
 async function loadData(coin, currency = "usd") {
@@ -32,11 +57,11 @@ async function loadData(coin, currency = "usd") {
     }
 }
 
-function moreInfo(coinData) {
+function moreInfo(coinData, currency = "$") {
     const container = document.getElementById('coin-container');
     coinTemplateData.filter(coin => {
         if (coin.name === coinData) {
-            container.innerHTML = coinFullTemplate(coin);
+            container.innerHTML = coinFullTemplate(coin, currency);
         };
     });
 }
