@@ -1,6 +1,14 @@
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('./RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 * {
     color: white;
     margin: 0;
+    font-family: RobotoSlab, sans-serif;
 }
 
 a {
@@ -9,6 +17,38 @@ a {
 
 a:hover {
     cursor: pointer;
+    color: black;
+}
+
+.d_flex {
+    display: flex;
+}
+
+.d_flex_c {
+    display: flex;
+    align-items: center;
+}
+
+.d_flex_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.g_6 {
+    gap: 6px;
+}
+
+.g_24 {
+    gap: 24px;
+}
+
+.f_s_22 {
+    font-size: 22px;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 18px;
 }
 
 body {
@@ -25,14 +65,22 @@ img {
     border-radius: 30px;
 }
 
+
+.coins-image:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
 .coin {
     background-color: rgba(255, 255, 255, 0.1);
-    width: 80vw;
-    height: 80vh;
+    width: 450px;
+    height: 82vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 6px;
     border-radius: 24px;
+    font-size: 18px;
 }
 
 #coin-container {
@@ -46,7 +94,7 @@ img {
 .coin-price {
     display: flex;
     justify-content: space-between;
-    width: 300px;
+    width: 330px;
 }
 
 .more-information {
@@ -72,10 +120,9 @@ img {
 }
 
 button {
-    position: absolute;
-    right: 40vw;
-    left: 85vw;
-    top: 2vh;
+    position: relative;
+    right: -13vw;
+    top: 1vw;
     color: black;
     font-size: 22px;
     border-radius: 20px;
@@ -110,4 +157,103 @@ header, footer {
     background-color: rgba(255, 255, 255, 0.25);
     border-radius: 20px;
     padding: 3px 12px;
+}
+
+input {
+    width: 150px;
+    color: black;
+    text-align: end;
+    font-size: 22px;
+}
+
+.calculate-container {
+    display: flex;
+    gap: 12px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 38vw;
+}
+
+.privacy {
+    font-size: 18px;
+    text-align: center;
+}
+
+footer > section > a > img:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+@media (max-width: 880px) {
+    .more-information {
+        width: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    .more-information {
+        width: 400px;
+    }
+
+    .center {
+        left: 40vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .more-information {
+        width: 350px;
+    }
+
+    .center {
+        left: 40vw;
+    }
+
+    .header-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    .coin {
+        width: 360px;
+    }
+
+    .calculate-container {
+        flex-direction: column;
+    }
+
+    .mobile-hide {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .more-information {
+        width: 300px;
+    }
+
+    .center {
+        left: 28vw;
+    }
+
+    .bold {
+        font-size: 16px;
+    }
+
+    .coin {
+        width: 300px;
+    }
+
+    .coin-price {
+        width: 290px;
+    }
+
+    #coin-container {
+        align-items: unset;
+        padding: 0 8px;
+    }
 }

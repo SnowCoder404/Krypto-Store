@@ -65,3 +65,13 @@ function moreInfo(coinData, currency = "$") {
         };
     });
 }
+
+function calculatePrice(price)  {
+    let coinPrice = document.getElementById("coin-price"); 
+    let amount = document.getElementById("amount").value;
+    coinPrice.value = (amount * price).toFixed(2);
+}
+
+function stopEventPropagation(event) {
+    event.stopPropagation();
+}
