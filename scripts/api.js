@@ -20,7 +20,7 @@ function searchInLocalData(currency = "usd") {
         } else if (currency === "eur") {
             currency = "€";
         } else if (currency === "chf") {
-            currency = "CHF";
+            currency = " CHF";
         }
         container.innerHTML += coinTemplate(coin, currency);
     });
@@ -38,7 +38,7 @@ function currencyChange(currency) {
         return "usd";
     } else if (currency === "€") {
         return "eur";
-    } else if (currency === "CHF") {
+    } else if (currency === " CHF") {
         return "chf";
     }    
 }
@@ -53,17 +53,39 @@ async function loadData(coin, currency = "usd") {
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error;
     }
 }
 
-function moreInfo(coinData, currency = "$") {
+function moreInfo(coinData, currency = "$", coinDataFull) {
     const container = document.getElementById('coin-container');
-    coinTemplateData.filter(coin => {
+    coinTemplateData.filter((coin, index) => {
         if (coin.name === coinData) {
-            container.innerHTML = coinFullTemplate(coin, currency);
+            container.innerHTML = coinFullTemplate(coin, currency, coinDataFull, index);
         };
     });
+    document.querySelector("body").onclick = () => {
+        logData(currencyChange(currency));
+    };
+}
+
+function nextInfo(index, currency) {
+    const container = document.getElementById('coin-container');;
+    if (index >= coinTemplateData.length - 1) {
+        index = 0;
+    } else {
+        index++;
+    }
+    container.innerHTML = coinFullTemplate(coinTemplateData[index], currency, coinTemplateData, index);
+}
+ 
+function lastInfo(index, currency) {
+    const container = document.getElementById('coin-container');
+    if (index <= 0) {
+        index = coinTemplateData.length - 1;
+    } else {
+        index = index - 1;
+    }
+    container.innerHTML = coinFullTemplate(coinTemplateData[index], currency, coinTemplateData, index);
 }
 
 function calculatePrice(price)  {
@@ -74,4 +96,41 @@ function calculatePrice(price)  {
 
 function stopEventPropagation(event) {
     event.stopPropagation();
+}
+
+function priceInfoShow(index, currency) {
+    const priceInfo = document.getElementById("more-info");
+    priceInfo.innerHTML = priceInfoTemplate(coinTemplateData[index], currency);
+    document.querySelector(".calculate-container").style = "";
+}
+
+function athInfoShow(index, currency) {
+    const priceInfo = document.getElementById("more-info");
+    priceInfo.innerHTML = athInfoTemplate(coinTemplateData[index], currency);
+    const [xValues, yValues] = loadCartData(index);
+    loadCartData(index);
+    createChart(xValues, yValues, currency, coinTemplateData[index].symbol.toUpperCase());
+    document.querySelector(".calculate-container").style = "display: none";
+}
+
+const loadCartData = (index) => {
+    const xValues = [];
+    const yValues = [];
+    pushData(xValues, index);
+    pushData(yValues, index)
+    return [xValues, yValues];
+}
+
+const pushData = (values, index) => {
+    values.push(coinTemplateData[index].atl);
+    values.push(coinTemplateData[index].ath);
+    values.push(coinTemplateData[index].low_24h);
+    values.push(coinTemplateData[index].high_24h);
+    values.push(coinTemplateData[index].current_price);
+};
+
+function moreInfoShow(index, currency) {
+    const priceInfo = document.getElementById("more-info");
+    priceInfo.innerHTML = moreInfoTemplate(coinTemplateData[index], currency);
+    document.querySelector(".calculate-container").style = "";
 }

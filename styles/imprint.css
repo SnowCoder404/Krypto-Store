@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('./RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    color: white;
+    margin: 0;
+    font-family: RobotoSlab, sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.d_flex_column_c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
