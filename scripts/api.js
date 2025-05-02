@@ -1,5 +1,6 @@
 const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?';
 const coins = [ "bitcoin", "ethereum", "litecoin", "dogecoin", "stellar", "ripple", "monero", "dash", "tron", "tether", "cardano", "polkadot", "solana", "avalanche-2", "chainlink", "uniswap", "bitcoin-cash", "litecoin", "binancecoin" ];
+const search = document.getElementById("search");
 let coinTemplateData = [];
 
 async function logData(currency = "usd") {
@@ -31,6 +32,16 @@ function setCurrencyActive(currency) {
         element.classList.remove("active");
     });
     document.getElementById(currency).classList.add("active");
+}
+
+const currencyChangeTheOtherWay = (currency) => {
+    if (currency === "usd" | currency === "$") {
+        return currency = "$";
+    } else if (currency === "eur" | currency === "€") {
+        return currency = "€";
+    } else if (currency === "chf" | currency === " CHF") {
+        return currency = " CHF";
+    }
 }
 
 function currencyChange(currency) {
@@ -129,8 +140,32 @@ const pushData = (values, index) => {
     values.push(coinTemplateData[index].current_price);
 };
 
+const formatBigNumbers = (number) => {
+    if (number > 1000 | number < -1000) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    } else {
+        return number;
+    }
+}
+
 function moreInfoShow(index, currency) {
     const priceInfo = document.getElementById("more-info");
     priceInfo.innerHTML = moreInfoTemplate(coinTemplateData[index], currency);
     document.querySelector(".calculate-container").style = "";
 }
+
+const onSubmit = () => {
+    let coinContainer = document.getElementById("coin-container");
+    let currency = document.querySelector(".active").id;
+    coinContainer.innerHTML = "";
+    const filteredCoins = coinTemplateData.filter((coin, ) => {        
+       return coin.id.includes(search.value);
+    });
+    filteredCoins.forEach(coin => {
+        coinContainer.innerHTML += coinTemplate(coin, currency);
+    });
+}
+
+search.addEventListener("onChange", () => {
+    onSubmit();
+});

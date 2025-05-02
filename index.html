@@ -14,8 +14,11 @@
 <body onload="logData()">
     <header>
         <div class="header-container">
-            <img class="header-image" src="assets/img/header.jpg"> 
+            <img class="header-image" src="assets/img/logo.png"> 
             <span>Krypto-Store</span>
+        </div>
+        <div>
+            <input onInput="onSubmit();" id="search" placeholder="Search" class="coin-search" type="search">
         </div>
         <div class="header-container">
             <a id="eur" onclick="logData('eur')">EUR</a>

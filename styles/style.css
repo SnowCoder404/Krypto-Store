@@ -99,7 +99,7 @@ img {
 .coin-price {
     display: flex;
     justify-content: space-between;
-    width: 330px;
+    width: 430px;
 }
 
 .more-information {
@@ -146,13 +146,15 @@ button:hover {
 }
 
 .header-image {
-    width: 250px;
+    width: 117px;
     height: 75px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 header, footer {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     font-size: 22px;
     padding: 12px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -226,6 +228,12 @@ canvas {
     width: 300px;
 }
 
+.coin-search {
+    border-radius: 24px;
+    width: 225px;
+    text-align: center;
+}
+
 @media (min-width: 800px) {
     #canvas {
         width: 425px !important;
@@ -275,6 +283,10 @@ canvas {
 
     .coin {
         width: 360px;
+    }
+   
+    .coin-price {
+        width: 345px;
     }
 
     .calculate-container {
