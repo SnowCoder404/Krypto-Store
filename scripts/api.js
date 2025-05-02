@@ -34,7 +34,7 @@ function setCurrencyActive(currency) {
     document.getElementById(currency).classList.add("active");
 }
 
-const currencyChangeTheOtherWay = (currency) => {
+function currencyChangeTheOtherWay(currency) {
     if (currency === "usd" | currency === "$") {
         return currency = "$";
     } else if (currency === "eur" | currency === "€") {
@@ -124,7 +124,7 @@ function athInfoShow(index, currency) {
     document.querySelector(".calculate-container").style = "display: none";
 }
 
-const loadCartData = (index) => {
+function loadCartData(index) {
     const xValues = [];
     const yValues = [];
     pushData(xValues, index);
@@ -132,7 +132,7 @@ const loadCartData = (index) => {
     return [xValues, yValues];
 }
 
-const pushData = (values, index) => {
+function pushData(values, index) {
     values.push(coinTemplateData[index].atl);
     values.push(coinTemplateData[index].ath);
     values.push(coinTemplateData[index].low_24h);
@@ -140,7 +140,7 @@ const pushData = (values, index) => {
     values.push(coinTemplateData[index].current_price);
 };
 
-const formatBigNumbers = (number) => {
+function formatBigNumbers(number) {
     if (number > 1000 | number < -1000) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     } else {
@@ -154,7 +154,7 @@ function moreInfoShow(index, currency) {
     document.querySelector(".calculate-container").style = "";
 }
 
-const onSubmit = () => {
+function onSubmit() {
     let coinContainer = document.getElementById("coin-container");
     let currency = document.querySelector(".active").id;
     coinContainer.innerHTML = "";
