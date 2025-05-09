@@ -305,6 +305,19 @@ canvas {
 }
 
 @media (max-width: 420px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .header-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .coin-price-container {
+        justify-content: center;
+    }
 
     .more-information {
         width: 300px;

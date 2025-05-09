@@ -51,8 +51,8 @@ function coinFullTemplate(coinData, currency = "$", coinDataFull, index) {
                         <span class"f_s_22">${coinData.symbol.toLocaleUpperCase()}</span>
                         <span class="mobile-hide">=</span>
                     </div>
-                    <div class="d_flex_c g_6">
-                        <input id="coin-price" type="number" value="${coinData.current_price.toFixed(2)}">
+                    <div class="d_flex_c g_6 coin-price-container">
+                        <span id="coin-price">${coinData.current_price.toFixed(2)}</span>
                         <span class"f_s_22">${currencyChangeTheOtherWay(currency)}</span>                    
                     </div>
                 </div>

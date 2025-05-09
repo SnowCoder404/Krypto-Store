@@ -102,7 +102,7 @@ function lastInfo(index, currency) {
 function calculatePrice(price)  {
     let coinPrice = document.getElementById("coin-price"); 
     let amount = document.getElementById("amount").value;
-    coinPrice.value = (amount * price).toFixed(2);
+    coinPrice.innerText = (amount * price).toFixed(2);
 }
 
 function stopEventPropagation(event) {
